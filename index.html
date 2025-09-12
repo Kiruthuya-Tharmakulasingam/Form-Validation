@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #F5F7FA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 20px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #444;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #4A90E2;
+            outline: none;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 3px;
+            display: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #4A90E2;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #357AB7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Student Registration</h2>
+        <form id="studentForm">
+            <div class="form-group">
+                <label for="name">Student Name</label>
+                <input type="text" id="name" placeholder="Enter your name">
+                <div class="error" id="nameError"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <!-- Changed from type="email" to type="text" -->
+                <input type="text" id="email" placeholder="Enter your email">
+                <div class="error" id="emailError"></div>
+            </div>
+            <div class="form-group">
+                <label for="roll">Roll Number</label>
+                <input type="text" id="roll" placeholder="Enter roll number">
+                <div class="error" id="rollError"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+                <div class="error" id="passwordError"></div>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+
+        const studentForm = document.getElementById("studentForm");
+
+        studentForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            let isValid = true;
+
+            // Name field validation
+            const nameError = document.getElementById("nameError")
+            const nameField = document.getElementById("name")
+            const nameRegex = /^[A-Za-z]{4,}$/;
+
+            if (nameField.value.trim() === '') {
+                isValid = false;
+                nameError.style.display = 'block';
+                nameError.innerHTML = `Name is required`;
+            } else if (!nameRegex.test(nameField.value.trim())) {
+                isValid = false;
+                nameError.style.display = 'block';
+                nameError.innerHTML = `Name must be at least 4 letters and contain only alphabets`;
+            } else {
+                isValid = false;
+                nameError.style.display = 'none';
+            };
+
+            // Email field validation
+            const emailError = document.getElementById("emailError")
+            const emailField = document.getElementById("email")
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (emailField.value.trim() === '') {
+                isValid = false;
+                emailError.style.display = 'block';
+                emailError.innerHTML = `Email address is required`;
+            } else if (!emailRegex.test(emailField.value.trim())) {
+                isValid = false;
+                emailError.style.display = 'block';
+                emailError.innerHTML = `Invalid email address`;
+            } else {
+                isValid = false;
+                emailError.style.display = 'none';
+            };
+
+
+            // Roll field validation
+            const rollError = document.getElementById("rollError")
+            const rollFeild = document.getElementById("roll")
+            const rollRegex = /^[A-Z]{2}\d{5}$/;
+
+            if (rollField.value.trim() === '') {
+                isValid = false;
+                rollError.style.display = 'block';
+                rollError.innerHTML = `Roll number is required`;
+            } else if (!rollRegex.test(rollField.value.trim())) {
+                isValid = false;
+                rollError.style.display = 'block';
+                rollError.innerHTML = `Invalid roll number`;
+            } else {
+                isValid = false;
+                rollError.style.display = 'none';
+            };
+
+            // password filed validation
+            const passwordError = document.getElementById("passwordError")
+            const passwordFeild = document.getElementById("password")
+            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
+
+            if (passwordField.value.trim() === '') {
+                isValid = false;
+                passwordError.style.display = 'block';
+                passwordError.innerHTML = `Password is required`;
+            } else if (!passwordRegex.test(passwordField.value.trim())) {
+                isValid = false;
+                passwordError.style.display = 'block';
+                passwordError.innerHTML = `Invalid password`;
+            } else {
+                passwordError.style.display = 'none';
+                isValid = true;
+            };
+
+            // If valid data
+            if (isValid) {
+                alert('Student Registered Successfully');
+                studentForm.reset();
+            }
+        });
+    </script>
+</body>
+
+</html>
