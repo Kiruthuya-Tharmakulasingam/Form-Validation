@@ -159,8 +159,8 @@
 
             // Roll field validation
             const rollError = document.getElementById("rollError")
-            const rollFeild = document.getElementById("roll")
-            const rollRegex = /^[A-Z]{2}\d{5}$/;
+            const rollField = document.getElementById("roll")
+            const rollRegex = /^[A-Za-z0-9]{5}$/;
 
             if (rollField.value.trim() === '') {
                 isValid = false;
@@ -171,13 +171,12 @@
                 rollError.style.display = 'block';
                 rollError.innerHTML = `Invalid roll number`;
             } else {
-                isValid = false;
                 rollError.style.display = 'none';
             };
 
             // password filed validation
             const passwordError = document.getElementById("passwordError")
-            const passwordFeild = document.getElementById("password")
+            const passwordField = document.getElementById("password")
             const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
 
             if (passwordField.value.trim() === '') {
